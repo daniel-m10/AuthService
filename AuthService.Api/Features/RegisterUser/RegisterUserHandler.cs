@@ -1,7 +1,6 @@
 ﻿using AuthService.Api.Domain.Common;
 using AuthService.Api.Domain.Entities;
 using AuthService.Api.Domain.Interfaces;
-using AuthService.Api.Domain.Results;
 
 namespace AuthService.Api.Features.RegisterUser
 {
