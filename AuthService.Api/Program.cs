@@ -1,10 +1,12 @@
 using AuthService.Api.Domain.Interfaces;
 using AuthService.Api.Features.RegisterUser;
+using AuthService.Api.Infrastructure;
 using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IRegisterUserHandler, RegisterUserHandler>();
+builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserValidator>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
