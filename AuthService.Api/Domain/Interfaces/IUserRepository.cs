@@ -6,5 +6,6 @@ namespace AuthService.Api.Domain.Interfaces
     {
         Task<bool> IsEmailTakenAsync(string email);
         Task CreateUserAsync(User user);
+        Task<User?> GetUserByEmailAsync(string email);
     }
 }

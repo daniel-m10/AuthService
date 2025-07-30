@@ -35,7 +35,7 @@ namespace AuthService.Tests.Features.RegisterUser
             var result = await _handler.HandleAsync(request);
 
             // Assert
-            result.ISuccess.Should().BeTrue();
+            result.IsSuccess.Should().BeTrue();
             result.Value.Should().NotBeNull();
             await _userRepository.Received(1).CreateUserAsync(Arg.Any<User>());
         }
@@ -56,7 +56,7 @@ namespace AuthService.Tests.Features.RegisterUser
             var result = await _handler.HandleAsync(request);
 
             // Assert
-            result.ISuccess.Should().BeFalse();
+            result.IsSuccess.Should().BeFalse();
             result.ErrorMessage.Should().Be("Email is already taken.");
             result.Value.Should().BeNull();
 

@@ -31,7 +31,7 @@ namespace AuthService.Api.Features.RegisterUser
 
                 Result<User> result = await handler.HandleAsync(request);
 
-                if (!result.ISuccess)
+                if (!result.IsSuccess)
                 {
                     return Results.Problem(
                         title: "Registration Failed",
