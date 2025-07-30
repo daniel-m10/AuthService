@@ -2,13 +2,13 @@
 {
     public class Result<T>
     {
-        public bool ISuccess { get; }
+        public bool IsSuccess { get; }
         public T? Value { get; }
         public string? ErrorMessage { get; }
 
         private Result(bool isSuccess, T? value, string? errorMessage)
         {
-            ISuccess = isSuccess;
+            IsSuccess = isSuccess;
             Value = value;
             ErrorMessage = errorMessage;
         }

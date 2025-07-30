@@ -60,6 +60,45 @@ namespace AuthService.Tests.Infrastructure
             Assert.That(users.First().Email, Is.EqualTo("new@mail.com"));
         }
 
+        [Test]
+        public async Task GetUserByEmailAsync_ShouldReturnUser_WhenEmailExists()
+        {
+            // Arrange
+            var repository = GetRepository();
+
+            var user = new User
+            {
+                Email = "new@mail.com",
+                PasswordHash = "password123",
+            };
+
+            await repository.CreateUserAsync(user);
+
+            // Act
+            var result = await repository.GetUserByEmailAsync("new@mail.com");
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Email, Is.EqualTo("new@mail.com"));
+                Assert.That(result.PasswordHash, Is.EqualTo("password123"));
+            });
+        }
+
+        [Test]
+        public async Task GetUserByEmailAsync_ShouldReturnNull_WhenEmailDoesNotExist()
+        {
+            // Arrange
+            var repository = GetRepository();
+
+            // Act
+            var result = await repository.GetUserByEmailAsync("notexisting@mail.com");
+
+            // Assert
+            Assert.That(result, Is.Null);
+        }
+
         private static InMemoryUserRepository GetRepository()
         {
             return new InMemoryUserRepository();

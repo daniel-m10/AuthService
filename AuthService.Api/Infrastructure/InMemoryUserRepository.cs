@@ -19,6 +19,12 @@ namespace AuthService.Api.Infrastructure
             return Task.FromResult(exists);
         }
 
+        public Task<User?> GetUserByEmailAsync(string email)
+        {
+            var user = _users.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            return Task.FromResult(user);
+        }
+
         public IReadOnlyCollection<User> GetAllUsers() => _users.AsReadOnly();
     }
 }
